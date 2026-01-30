@@ -1,11 +1,10 @@
 import { PropertyFactory } from "@mat3ra/prode";
+import { Utils } from "@mat3ra/utils";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import PropTypes from "prop-types";
 import React from "react";
 import s from "underscore.string";
-
-import { Utils } from "@mat3ra/utils";
 
 import { getScalarViewConfig } from "../getview";
 import { Scalar } from "./primitive/Scalar";
@@ -60,4 +59,3 @@ ScalarsList.propTypes = {
     // eslint-disable-next-line react/require-default-props
     results: PropTypes.array,
 };
-

@@ -83,4 +83,3 @@ const PROPERTY_VIEWS: Record<PropertyWithConfig, ViewConfig> = {
 export function getScalarViewConfig(propertyName: PropertyWithConfig) {
     return PROPERTY_VIEWS[propertyName];
 }
-
