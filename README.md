@@ -28,8 +28,6 @@ This repository is an [open-source](LICENSE.md) work-in-progress and we welcome 
 We regularly deploy the latest code containing all accepted contributions online as part of the
 [Mat3ra.com](https://mat3ra.com) platform, so contributors will see their code in action there.
 
-See [PROVE_PACKAGE_STRUCTURE.md](./PROVE_PACKAGE_STRUCTURE.md) for details on the package structure and migration guide.
-
 Useful commands for development:
 
 ```bash
