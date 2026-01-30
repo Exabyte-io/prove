@@ -6,7 +6,7 @@
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
         "lint": "eslint src tests && prettier --write src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
-        "transpile": "babel --out-dir dist src",
+        "transpile": "babel --out-dir dist src --extensions \".ts,.tsx,.js,.jsx\"",
         "postinstall": "npm run transpile",
         "prettier": "prettier --check src tests",
         "prepare": "husky install"
@@ -16,6 +16,7 @@
         "url": "https://github.com/Exabyte-io/prove.git"
     },
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "/dist",
         "/src",
