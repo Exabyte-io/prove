@@ -88,7 +88,7 @@
         "npm": ">=10.0.0"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-        "*.{js,jsx,ts,tsx,css}": "prettier --write"
+        "*.{js,jsx,ts,tsx,!dist/**/*}": "eslint --cache --fix",
+        "*.{js,jsx,ts,tsx,css,!dist/**/*}": "prettier --write"
     }
 }
