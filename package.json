@@ -28,6 +28,24 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Exabyte-io/prove",
     "dependencies": {
+        "@mat3ra/prode": "2026.1.23-0",
+        "@mat3ra/code": "2025.10.24-0",
+        "@mat3ra/esse": "2026.1.23-0",
+        "@mat3ra/made": "2025.11.13-0",
+        "@mat3ra/utils": "git+https://github.com/Exabyte-io/utils.git#abd91a55ebae221eb0d9af2cbb2acbef036d6365",
+        "highcharts": "^6.2.0",
+        "highcharts-more": "^0.1.7",
+        "highcharts-react-official": "^3.2.0",
+        "lodash": "^4.17.21",
+        "underscore.string": "^3.3.4"
+    },
+    "peerDependencies": {
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0",
+        "@mui/material": "^5.0.0",
+        "@exabyte-io/cove.js": "2025.10.24-0"
+    },
+    "devDependencies": {
         "@babel/cli": "7.16.0",
         "@babel/core": "7.24.3",
         "@babel/eslint-parser": "7.16.3",
@@ -35,9 +53,7 @@
         "@babel/preset-env": "7.16.4",
         "@babel/preset-react": "7.16.7",
         "@babel/register": "^7.16.0",
-        "@babel/runtime-corejs3": "7.16.8"
-    },
-    "devDependencies": {
+        "@babel/runtime-corejs3": "7.16.8",
         "chai": "^4.3.4",
         "eslint": "7.32.0",
         "eslint-config-airbnb": "19.0.2",
@@ -56,7 +72,8 @@
         "prettier": "^2.7.1"
     },
     "engines": {
-        "node": ">=12.0.0"
+        "node": ">=20.0.0",
+        "npm": ">=10.0.0"
     },
     "lint-staged": {
         "*.js": "eslint --cache --fix",
