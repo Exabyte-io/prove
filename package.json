@@ -28,10 +28,10 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Exabyte-io/prove",
     "dependencies": {
-        "@mat3ra/prode": "2026.1.23-0",
         "@mat3ra/code": "2025.10.24-0",
         "@mat3ra/esse": "2026.1.23-0",
         "@mat3ra/made": "2025.11.13-0",
+        "@mat3ra/prode": "2026.1.23-0",
         "@mat3ra/utils": "git+https://github.com/Exabyte-io/utils.git#abd91a55ebae221eb0d9af2cbb2acbef036d6365",
         "highcharts": "^6.2.0",
         "highcharts-more": "^0.1.7",
@@ -40,11 +40,11 @@
         "underscore.string": "^3.3.4"
     },
     "peerDependencies": {
-        "react": "^17.0.0 || ^18.0.0",
-        "react-dom": "^17.0.0 || ^18.0.0",
-        "@types/react": "^17.0.2",
+        "@exabyte-io/cove.js": "2025.10.24-0",
         "@mui/material": "^5.0.0",
-        "@exabyte-io/cove.js": "2025.10.24-0"
+        "@types/react": "^17.0.2",
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
         "@babel/cli": "7.16.0",
@@ -67,6 +67,7 @@
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jsdoc": "37.1.0",
         "eslint-plugin-jsx-a11y": "6.5.1",
+        "eslint-plugin-mui-path-imports": "^0.0.15",
         "eslint-plugin-prettier": "4.2.1",
         "eslint-plugin-react": "7.30.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
