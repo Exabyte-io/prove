@@ -1,5 +1,6 @@
 {
     "extends": ["@exabyte-io/eslint-config"],
+    "ignorePatterns": ["dist/", "node_modules/", "*.min.js"],
     "settings": {
         "import/resolver": {
             "node": {
