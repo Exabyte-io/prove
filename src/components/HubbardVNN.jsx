@@ -58,4 +58,3 @@ export class HubbardVNN extends PropertyComponent {
         ) : null;
     }
 }
-

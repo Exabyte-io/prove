@@ -4,9 +4,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React from "react";
 
+import { PropertyComponent } from "./primitive/PropertyComponent";
 import { BandGap } from "./include/BandGap";
 import { EigenvaluesAtKpoint } from "./include/EigenvaluesAtKpoint";
-import { PropertyComponent } from "./primitive/PropertyComponent";
 
 // TODO: migrate to use generic data type class instead
 export class BandGaps extends PropertyComponent {

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "jsx": "react",
-    "module": "esNext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
     "outDir": "./dist",
@@ -11,15 +11,11 @@
     "esModuleInterop": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": false,
+    "strict": true,
     "skipLibCheck": true,
-    "noImplicitAny": false,
     "types": [],
     "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-      "@mat3ra/prove": ["./src/index.ts"]
-    }
+    "baseUrl": "./src"
   },
   "include": [
     "./src"
@@ -29,4 +25,3 @@
     "dist"
   ]
 }
-

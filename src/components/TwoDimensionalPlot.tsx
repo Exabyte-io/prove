@@ -22,10 +22,11 @@ interface TwoDimensionalPlotProps {
         | PhononDOSProperty
         | PotentialProfileProperty
         | ReactionEnergyProfileProperty;
+    title?: string;
 }
 
-export function TwoDimensionalPlot({ property }: TwoDimensionalPlotProps) {
+export function TwoDimensionalPlot({ property, title }: TwoDimensionalPlotProps) {
     const { chartConfig, name } = property;
 
-    return <Chart config={chartConfig} title={name} />;
+    return <Chart config={chartConfig} title={title || name} />;
 }
