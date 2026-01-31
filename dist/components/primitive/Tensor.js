@@ -1,47 +1,27 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Tensor = Tensor;
-var _utils = require("@mat3ra/utils");
-var _Box = _interopRequireDefault(require("@mui/material/Box"));
-var _List = _interopRequireDefault(require("@mui/material/List"));
-var _ListItem = _interopRequireDefault(require("@mui/material/ListItem"));
-var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-/* eslint-disable react/require-default-props */
-/* eslint-disable react/no-array-index-key */
-
-const {
-  numberPadArray
-} = _utils.Utils.str;
-function Tensor({
-  property,
-  title
-}) {
-  const values = "value" in property ? property.value : property.values.map(val => val.value);
-  return /*#__PURE__*/_react.default.createElement(_Box.default, {
-    p: 4
-  }, /*#__PURE__*/_react.default.createElement(_Typography.default, {
-    variant: "subtitle2",
-    color: "text.primary"
-  }, title, " (", property.units, ")"), /*#__PURE__*/_react.default.createElement(_List.default, {
-    sx: {
-      whiteSpace: "pre"
-    }
-  }, values.map((val, index) => {
-    return /*#__PURE__*/_react.default.createElement(_ListItem.default, {
-      disablePadding: true,
-      key: index,
-      sx: {
-        lineHeight: 0,
-        justifyContent: "flex-end"
-      }
-    }, /*#__PURE__*/_react.default.createElement(_Typography.default, {
-      variant: "body2",
-      color: "text.primary"
-    }, numberPadArray(val)));
-  })));
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Tensor = void 0;
+const utils_1 = require("@mat3ra/utils");
+const Box_1 = __importDefault(require("@mui/material/Box"));
+const List_1 = __importDefault(require("@mui/material/List"));
+const ListItem_1 = __importDefault(require("@mui/material/ListItem"));
+const Typography_1 = __importDefault(require("@mui/material/Typography"));
+const react_1 = __importDefault(require("react"));
+const { numberPadArray } = utils_1.Utils.str;
+function Tensor({ property, title }) {
+    const values = "value" in property ? property.value : property.values.map((val) => val.value);
+    return (react_1.default.createElement(Box_1.default, { p: 4 },
+        react_1.default.createElement(Typography_1.default, { variant: "subtitle2", color: "text.primary" },
+            title,
+            " (",
+            property.units,
+            ")"),
+        react_1.default.createElement(List_1.default, { sx: { whiteSpace: "pre" } }, values.map((val, index) => {
+            return (react_1.default.createElement(ListItem_1.default, { disablePadding: true, key: index, sx: { lineHeight: 0, justifyContent: "flex-end" } },
+                react_1.default.createElement(Typography_1.default, { variant: "body2", color: "text.primary" }, numberPadArray(val))));
+        }))));
 }
+exports.Tensor = Tensor;

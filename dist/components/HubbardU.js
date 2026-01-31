@@ -1,44 +1,42 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.HubbardU = void 0;
-var _Box = _interopRequireDefault(require("@mui/material/Box"));
-var _Table = _interopRequireDefault(require("@mui/material/Table"));
-var _TableBody = _interopRequireDefault(require("@mui/material/TableBody"));
-var _TableCell = _interopRequireDefault(require("@mui/material/TableCell"));
-var _TableHead = _interopRequireDefault(require("@mui/material/TableHead"));
-var _TableRow = _interopRequireDefault(require("@mui/material/TableRow"));
-var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
-var _react = _interopRequireDefault(require("react"));
-var _PropertyComponent = require("./primitive/PropertyComponent");
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-class HubbardU extends _PropertyComponent.PropertyComponent {
-  render() {
-    const {
-      values = []
-    } = this.props.property;
-    const headers = ["Site no.", "Atomic species (new label)", "Orbital/manifold", "U (eV)"];
-    return /*#__PURE__*/_react.default.createElement(_Box.default, {
-      p: 4,
-      sx: {
-        overflow: "scroll"
-      }
-    }, /*#__PURE__*/_react.default.createElement(_Typography.default, {
-      variant: "subtitle2",
-      color: "text.primary"
-    }, "Hubbard U parameters"), /*#__PURE__*/_react.default.createElement(_Table.default, null, /*#__PURE__*/_react.default.createElement(_TableHead.default, null, /*#__PURE__*/_react.default.createElement(_TableRow.default, null, headers.map((item, idx) => {
-      const key = `hubbard-header-${idx}`;
-      return /*#__PURE__*/_react.default.createElement(_TableCell.default, {
-        key: key
-      }, item);
-    }))), /*#__PURE__*/_react.default.createElement(_TableBody.default, null, values.map((row, idx) => {
-      const key = `hubbard-${idx}`;
-      return /*#__PURE__*/_react.default.createElement(_TableRow.default, {
-        key: key
-      }, /*#__PURE__*/_react.default.createElement(_TableCell.default, null, row.id), /*#__PURE__*/_react.default.createElement(_TableCell.default, null, row.atomicSpecies, " (", row.newLabel, ")"), /*#__PURE__*/_react.default.createElement(_TableCell.default, null, row.orbitalName), /*#__PURE__*/_react.default.createElement(_TableCell.default, null, row.value));
-    }))));
-  }
+const Box_1 = __importDefault(require("@mui/material/Box"));
+const Table_1 = __importDefault(require("@mui/material/Table"));
+const TableBody_1 = __importDefault(require("@mui/material/TableBody"));
+const TableCell_1 = __importDefault(require("@mui/material/TableCell"));
+const TableHead_1 = __importDefault(require("@mui/material/TableHead"));
+const TableRow_1 = __importDefault(require("@mui/material/TableRow"));
+const Typography_1 = __importDefault(require("@mui/material/Typography"));
+const react_1 = __importDefault(require("react"));
+const PropertyComponent_1 = require("./primitive/PropertyComponent");
+class HubbardU extends PropertyComponent_1.PropertyComponent {
+    render() {
+        const { values = [] } = this.props.property;
+        const headers = ["Site no.", "Atomic species (new label)", "Orbital/manifold", "U (eV)"];
+        return (react_1.default.createElement(Box_1.default, { p: 4, sx: { overflow: "scroll" } },
+            react_1.default.createElement(Typography_1.default, { variant: "subtitle2", color: "text.primary" }, "Hubbard U parameters"),
+            react_1.default.createElement(Table_1.default, null,
+                react_1.default.createElement(TableHead_1.default, null,
+                    react_1.default.createElement(TableRow_1.default, null, headers.map((item, idx) => {
+                        const key = `hubbard-header-${idx}`;
+                        return react_1.default.createElement(TableCell_1.default, { key: key }, item);
+                    }))),
+                react_1.default.createElement(TableBody_1.default, null, values.map((row, idx) => {
+                    const key = `hubbard-${idx}`;
+                    return (react_1.default.createElement(TableRow_1.default, { key: key },
+                        react_1.default.createElement(TableCell_1.default, null, row.id),
+                        react_1.default.createElement(TableCell_1.default, null,
+                            row.atomicSpecies,
+                            " (",
+                            row.newLabel,
+                            ")"),
+                        react_1.default.createElement(TableCell_1.default, null, row.orbitalName),
+                        react_1.default.createElement(TableCell_1.default, null, row.value)));
+                })))));
+    }
 }
 exports.HubbardU = HubbardU;
