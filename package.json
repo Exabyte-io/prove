@@ -6,7 +6,7 @@
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
         "lint": "eslint src tests && prettier --write src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
-        "transpile": "babel --out-dir dist src --extensions \".ts,.tsx,.js,.jsx\"",
+        "transpile": "tsc",
         "postinstall": "npm run transpile",
         "prettier": "prettier --check src tests",
         "prepare": "husky install"
@@ -20,7 +20,7 @@
     "files": [
         "/dist",
         "/src",
-        ".babelrc"
+        "tsconfig.json"
     ],
     "author": "Exabyte Inc.",
     "bugs": {
@@ -82,7 +82,8 @@
         "nyc": "^15.1.0",
         "prettier": "^2.7.1",
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "typescript": "^4.9.5"
     },
     "engines": {
         "node": ">=20.0.0",
