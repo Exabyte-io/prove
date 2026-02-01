@@ -44,6 +44,50 @@ npm run build
 npm run test
 ```
 
+## Standalone mode (MVP)
+
+Prove includes a minimal standalone viewer (Wave-style) to render property JSON outside of WebApp. The current
+MVP supports `band_gaps` plus a generic scalar card renderer for objects shaped like `{ name, value, units }`.
+
+### Run (dev server)
+
+```bash
+npm run start
+```
+
+Then open `http://localhost:3003/`.
+
+### Build + serve (static bundle)
+
+```bash
+npm run build
+cd build
+python -m http.server 8008
+```
+
+Then open `http://localhost:8008/`.
+
+### Pass data
+
+You can pass results to the viewer in a few ways:
+
+- URL params: `?title=...&results=<urlencoded JSON array>`
+- Console: `window.__prove.render(results, { title })`
+
+Example payload:
+
+```js
+[
+  {
+    "name": "band_gaps",
+    "values": [
+      { "type": "direct", "value": 0.137, "units": "eV" },
+      { "type": "indirect", "value": 0.137, "units": "eV" }
+    ]
+  }
+]
+```
+
 ## Using Linter
 
 Linter setup will prevent committing files that don't adhere to the code standard. It will
