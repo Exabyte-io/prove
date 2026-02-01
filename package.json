@@ -6,8 +6,10 @@
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
         "lint": "eslint src tests && prettier --write src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
-        "transpile": "babel --out-dir dist src --extensions \".ts,.tsx,.js,.jsx\"",
-        "postinstall": "npm run transpile",
+        "start": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "transpile": "tsc",
         "prettier": "prettier --check src tests",
         "prepare": "husky install"
     },
@@ -20,7 +22,7 @@
     "files": [
         "/dist",
         "/src",
-        ".babelrc"
+        "tsconfig.json"
     ],
     "author": "Exabyte Inc.",
     "bugs": {
@@ -58,12 +60,17 @@
         "@babel/preset-typescript": "^7.22.5",
         "@babel/register": "^7.16.0",
         "@babel/runtime-corejs3": "7.16.8",
+        "@emotion/react": "^11.11.4",
+        "@emotion/styled": "^11.11.0",
+        "@emotion/babel-plugin": "^11.11.0",
         "@exabyte-io/cove.js": "2025.10.24-0",
         "@exabyte-io/eslint-config": "^2025.5.13-0",
+        "@mui/icons-material": "^5.11.16",
         "@mui/material": "^5.0.0",
         "@types/react": "^17.0.2",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
+        "@vitejs/plugin-react": "^4.3.4",
         "chai": "^4.3.4",
         "eslint": "7.32.0",
         "eslint-config-airbnb": "19.0.2",
@@ -76,13 +83,16 @@
         "eslint-plugin-prettier": "4.2.1",
         "eslint-plugin-react": "7.30.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
+        "esbuild": "^0.20.2",
         "husky": "^7.0.4",
         "lint-staged": "^12.1.2",
         "mocha": "10.3.0",
         "nyc": "^15.1.0",
         "prettier": "^2.7.1",
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "typescript": "^4.9.5",
+        "vite": "^6.0.7"
     },
     "engines": {
         "node": ">=20.0.0",

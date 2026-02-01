@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Prove (Standalone)</title>
+    </head>
+    <body>
+        <noscript>Please enable JavaScript to view this page.</noscript>
+        <div id="root" style="width: 100%; max-width: 1200px; margin: 16px auto;"></div>
+        <script>
+            // Minimal polyfills for browser bundles that expect Node-ish globals.
+            window.global = window.globalThis;
+            window.process = window.process || { env: {}, cwd: () => "/" };
+        </script>
+        <script type="module">
+            import { renderProveResults } from "./src/standalone/index";
+
+            const root = document.getElementById("root");
+            const params = new URLSearchParams(window.location.search);
+
+            // You can pass results in 3 ways:
+            // 1) Console: window.renderProveResults([...]) or window.__prove.render([...])
+            // 2) Global:  window.__PROVE_RESULTS__ = [...]
+            // 3) URL:     ?results=<urlencoded JSON>&title=...
+            const demo = [
+                { name: "fermi_energy", value: 19.332, units: "eV" },
+                {
+                    name: "band_gaps",
+                    values: [
+                        { type: "direct", value: 0.137, units: "eV" },
+                        { type: "indirect", value: 0.137, units: "eV" },
+                    ],
+                },
+            ];
+
+            let initialResults = window.__PROVE_RESULTS__;
+            const encoded = params.get("results");
+            if (!initialResults && encoded) {
+                try {
+                    initialResults = JSON.parse(decodeURIComponent(encoded));
+                } catch (e) {
+                    // eslint-disable-next-line no-console
+                    console.error("Failed to parse ?results= JSON", e);
+                }
+            }
+
+            const title = params.get("title") || "Prove (Standalone)";
+            renderProveResults(initialResults || demo, root, { title });
+
+            window.__prove = {
+                root,
+                render: (results, options = {}) => renderProveResults(results, root, options),
+            };
+        </script>
+    </body>
+</html>
