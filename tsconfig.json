@@ -1,0 +1,4 @@
+{
+  "extends": "@mat3ra/tsconfig/tsconfig-react-jsx.json",
+  "include": ["src/**/*"]
+}

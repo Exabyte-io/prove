@@ -1,44 +1,81 @@
 {
-    "name": "@mat3ra/PROJECT_NAME",
+    "name": "@mat3ra/prove",
     "version": "0.0.0",
-    "description": "PROJECT_DESCRIPTION",
+    "description": "Property visualization components for Mat3ra workflow ecosystem",
     "scripts": {
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
-        "lint": "eslint src tests && prettier --write src tests",
+        "lint": "eslint src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
-        "transpile": "babel --out-dir dist src",
-        "postinstall": "npm run transpile",
+        "start": "vite",
+        "build": "npm run transpile && vite build",
+        "preview": "vite preview",
+        "transpile": "tsc",
         "prettier": "prettier --check src tests",
         "prepare": "husky install"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Exabyte-io/PROJECT_NAME.git"
+        "url": "https://github.com/Exabyte-io/prove.git"
     },
-    "main": "dist/index.js",
+    "main": "dist/exports.js",
+    "types": "dist/exports.d.ts",
     "files": [
         "/dist",
         "/src",
-        ".babelrc"
+        "tsconfig.json"
     ],
     "author": "Exabyte Inc.",
     "bugs": {
-        "url": "https://github.com/Exabyte-io/PROJECT_NAME/issues"
+        "url": "https://github.com/Exabyte-io/prove/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Exabyte-io/PROJECT_NAME",
+    "homepage": "https://github.com/Exabyte-io/prove",
     "dependencies": {
+        "@mat3ra/code": "2025.10.24-0",
+        "@mat3ra/esse": "2026.1.23-0",
+        "@mat3ra/made": "2025.11.13-0",
+        "@mat3ra/prode": "2026.1.23-0",
+        "@mat3ra/utils": "git+https://github.com/Exabyte-io/utils.git#abd91a55ebae221eb0d9af2cbb2acbef036d6365",
+        "@mui/styles": "^6.5.0",
+        "highcharts": "^6.2.0",
+        "highcharts-more": "^0.1.7",
+        "highcharts-react-official": "^3.2.0",
+        "lodash": "^4.17.21",
+        "prop-types": "^15.8.1",
+        "underscore.string": "^3.3.4"
+    },
+    "peerDependencies": {
+        "@exabyte-io/cove.js": "2025.10.24-0",
+        "@mui/material": "^5.0.0",
+        "@types/react": "^17.0.2",
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0"
+    },
+    "devDependencies": {
         "@babel/cli": "7.16.0",
         "@babel/core": "7.24.3",
         "@babel/eslint-parser": "7.16.3",
         "@babel/plugin-proposal-class-properties": "7.16.0",
         "@babel/preset-env": "7.16.4",
         "@babel/preset-react": "7.16.7",
+        "@babel/preset-typescript": "^7.22.5",
         "@babel/register": "^7.16.0",
-        "@babel/runtime-corejs3": "7.16.8"
-    },
-    "devDependencies": {
+        "@babel/runtime-corejs3": "7.16.8",
+        "@emotion/babel-plugin": "^11.11.0",
+        "@emotion/react": "^11.11.4",
+        "@emotion/styled": "^11.11.0",
+        "@exabyte-io/cove.js": "2025.10.24-0",
+        "@exabyte-io/eslint-config": "^2025.5.13-0",
+        "@mat3ra/tsconfig": "^2024.6.3-0",
+        "@mui/icons-material": "^5.11.0",
+        "@mui/material": "^5.0.0",
+        "@types/react": "^17.0.2",
+        "@types/react-dom": "^17.0.2",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "@vitejs/plugin-react": "^4.3.4",
         "chai": "^4.3.4",
+        "esbuild": "^0.20.2",
         "eslint": "7.32.0",
         "eslint-config-airbnb": "19.0.2",
         "eslint-config-prettier": "8.3.0",
@@ -46,6 +83,7 @@
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jsdoc": "37.1.0",
         "eslint-plugin-jsx-a11y": "6.5.1",
+        "eslint-plugin-mui-path-imports": "^0.0.15",
         "eslint-plugin-prettier": "4.2.1",
         "eslint-plugin-react": "7.30.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
@@ -53,13 +91,19 @@
         "lint-staged": "^12.1.2",
         "mocha": "10.3.0",
         "nyc": "^15.1.0",
-        "prettier": "^2.7.1"
+        "prettier": "^2.7.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "typescript": "^4.9.5",
+        "vite": "^6.0.7",
+        "vite-plugin-node-polyfills": "^0.25.0"
     },
     "engines": {
-        "node": ">=12.0.0"
+        "node": ">=20.0.0",
+        "npm": ">=10.0.0"
     },
     "lint-staged": {
-        "*.js": "eslint --cache --fix",
-        "*.{js,css}": "prettier --write"
+        "*.{js,jsx,ts,tsx,!dist/**/*}": "eslint --cache --fix",
+        "*.{js,jsx,ts,tsx,css,!dist/**/*}": "prettier --write"
     }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>Prove - Property Visualization</title>
+</head>
+<body>
+<noscript>Please enable JavaScript to view this website correctly.</noscript>
+<div id="root" style="width:100vw; height:100vh;"></div>
+<script type="module">
+    import { renderResults } from "./src/index";
+    const exampleResults = [
+        { name: "total_energy", value: -123.456, units: "eV" },
+        { name: "pressure", value: 0.5, units: "GPa" },
+        { name: "fermi_energy", value: 5.234, units: "eV" },
+        { name: "total_force", value: 0.001234, units: "eV/Å" }
+    ];
+    renderResults(exampleResults);
+</script>
+</body>
+</html>
