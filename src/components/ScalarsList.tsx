@@ -2,7 +2,6 @@ import { PropertyFactory } from "@mat3ra/prode";
 import { Utils } from "@mat3ra/utils";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import PropTypes from "prop-types";
 import React from "react";
 import s from "underscore.string";
 
@@ -11,20 +10,29 @@ import { Scalar } from "./primitive/Scalar";
 
 const { numberFormat } = Utils.str;
 
-export class ScalarsList extends React.Component {
-    get scalarResults() {
+interface PropertyResult {
+    name: string;
+    value?: number;
+    units?: string;
+}
+
+interface ScalarsListProps {
+    results?: PropertyResult[];
+}
+
+export class ScalarsList extends React.Component<ScalarsListProps> {
+    get scalarResults(): PropertyResult[] {
         const scalarResultsNames = PropertyFactory.getScalarPropertyNames();
 
         return (
-            // eslint-disable-next-line react/destructuring-assignment
-            this.props.results.filter((x) => {
+            this.props.results?.filter((x) => {
                 return scalarResultsNames.includes(x.name) && Object.keys(x).length > 1;
             }) || []
         );
     }
 
     render() {
-        const widgets = [];
+        const widgets: JSX.Element[] = [];
         this.scalarResults.forEach((result) => {
             const config = getScalarViewConfig(result.name);
             const propertyId = s.slugify(result.name);
@@ -55,7 +63,3 @@ export class ScalarsList extends React.Component {
     }
 }
 
-ScalarsList.propTypes = {
-    // eslint-disable-next-line react/require-default-props
-    results: PropTypes.array,
-};
