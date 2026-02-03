@@ -1,5 +1,13 @@
 {
     "extends": ["@exabyte-io/eslint-config"],
+    "ignorePatterns": ["dist/", "node_modules/", "*.min.js"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
     "overrides": [
         {
             "files": ["*.ts", "*.tsx"],

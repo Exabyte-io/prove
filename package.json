@@ -6,7 +6,7 @@
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
         "lint": "eslint src tests && prettier --write src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
-        "transpile": "babel --out-dir dist src",
+        "transpile": "babel --out-dir dist src --extensions \".ts,.tsx,.js,.jsx\"",
         "postinstall": "npm run transpile",
         "prettier": "prettier --check src tests",
         "prepare": "husky install"
@@ -16,6 +16,7 @@
         "url": "https://github.com/Exabyte-io/prove.git"
     },
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "/dist",
         "/src",
@@ -28,23 +29,24 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Exabyte-io/prove",
     "dependencies": {
-        "@mat3ra/prode": "2026.1.23-0",
         "@mat3ra/code": "2025.10.24-0",
         "@mat3ra/esse": "2026.1.23-0",
         "@mat3ra/made": "2025.11.13-0",
+        "@mat3ra/prode": "2026.1.23-0",
         "@mat3ra/utils": "git+https://github.com/Exabyte-io/utils.git#abd91a55ebae221eb0d9af2cbb2acbef036d6365",
         "highcharts": "^6.2.0",
         "highcharts-more": "^0.1.7",
         "highcharts-react-official": "^3.2.0",
         "lodash": "^4.17.21",
+        "prop-types": "^15.8.1",
         "underscore.string": "^3.3.4"
     },
     "peerDependencies": {
-        "react": "^17.0.0 || ^18.0.0",
-        "react-dom": "^17.0.0 || ^18.0.0",
-        "@types/react": "^17.0.2",
+        "@exabyte-io/cove.js": "2025.10.24-0",
         "@mui/material": "^5.0.0",
-        "@exabyte-io/cove.js": "2025.10.24-0"
+        "@types/react": "^17.0.2",
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
         "@babel/cli": "7.16.0",
@@ -53,9 +55,13 @@
         "@babel/plugin-proposal-class-properties": "7.16.0",
         "@babel/preset-env": "7.16.4",
         "@babel/preset-react": "7.16.7",
+        "@babel/preset-typescript": "^7.22.5",
         "@babel/register": "^7.16.0",
         "@babel/runtime-corejs3": "7.16.8",
+        "@exabyte-io/cove.js": "2025.10.24-0",
         "@exabyte-io/eslint-config": "^2025.5.13-0",
+        "@mui/material": "^5.0.0",
+        "@types/react": "^17.0.2",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
         "chai": "^4.3.4",
@@ -66,6 +72,7 @@
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jsdoc": "37.1.0",
         "eslint-plugin-jsx-a11y": "6.5.1",
+        "eslint-plugin-mui-path-imports": "^0.0.15",
         "eslint-plugin-prettier": "4.2.1",
         "eslint-plugin-react": "7.30.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
@@ -73,14 +80,16 @@
         "lint-staged": "^12.1.2",
         "mocha": "10.3.0",
         "nyc": "^15.1.0",
-        "prettier": "^2.7.1"
+        "prettier": "^2.7.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
     },
     "engines": {
         "node": ">=20.0.0",
         "npm": ">=10.0.0"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-        "*.{js,jsx,ts,tsx,css}": "prettier --write"
+        "*.{js,jsx,ts,tsx,!dist/**/*}": "eslint --cache --fix",
+        "*.{js,jsx,ts,tsx,css,!dist/**/*}": "prettier --write"
     }
 }
