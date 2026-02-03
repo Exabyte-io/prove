@@ -15,8 +15,6 @@ export type PropertyWithConfig =
     | PropertyName.fermi_energy
     | PropertyName.reaction_energy_barrier
     | PropertyName.zero_point_energy
-    | PropertyName.atomic_constraints
-    | PropertyName.jupyter_notebook_endpoint
     | PropertyName.is_relaxed
     | PropertyName.valence_band_offset;
 
@@ -69,9 +67,7 @@ const PROPERTY_VIEWS: Record<PropertyWithConfig, ViewConfig> = {
         color: "white",
         decimals: 3,
     },
-    [PropertyName.atomic_constraints]: {},
     [PropertyName.is_relaxed]: {},
-    [PropertyName.jupyter_notebook_endpoint]: {},
 };
 
 /**
