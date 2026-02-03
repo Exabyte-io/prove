@@ -3,11 +3,12 @@
     "version": "0.0.0",
     "description": "Property visualization components for Mat3ra workflow ecosystem",
     "scripts": {
+        "build": "npm run transpile && vite build",
+        "start": "vite",
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
         "lint": "eslint src tests && prettier --write src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
-        "transpile": "babel --out-dir dist src --extensions \".ts,.tsx,.js,.jsx\"",
-        "postinstall": "npm run transpile",
+        "transpile": "tsc",
         "prettier": "prettier --check src tests",
         "prepare": "husky install"
     },
@@ -20,7 +21,7 @@
     "files": [
         "/dist",
         "/src",
-        ".babelrc"
+        "tsconfig.json"
     ],
     "author": "Exabyte Inc.",
     "bugs": {
@@ -64,6 +65,7 @@
         "@types/react": "^17.0.2",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
+        "@vitejs/plugin-react": "^4.3.4",
         "chai": "^4.3.4",
         "eslint": "7.32.0",
         "eslint-config-airbnb": "19.0.2",
@@ -82,7 +84,9 @@
         "nyc": "^15.1.0",
         "prettier": "^2.7.1",
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "vite": "^6.0.7",
+        "vite-plugin-node-polyfills": "^0.22.0"
     },
     "engines": {
         "node": ">=20.0.0",
