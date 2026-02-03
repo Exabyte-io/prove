@@ -4,10 +4,10 @@
     "description": "Property visualization components for Mat3ra workflow ecosystem",
     "scripts": {
         "test": "nyc --reporter=text mocha --recursive --bail --require @babel/register/lib --require tests/setup.js tests",
-        "lint": "eslint src tests && prettier --write src tests",
+        "lint": "eslint src tests",
         "lint:fix": "eslint --fix --cache src tests && prettier --write src tests",
         "start": "vite",
-        "build": "vite build",
+        "build": "npm run transpile && vite build",
         "preview": "vite preview",
         "transpile": "tsc",
         "prettier": "prettier --check src tests",
@@ -17,8 +17,8 @@
         "type": "git",
         "url": "https://github.com/Exabyte-io/prove.git"
     },
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/exports.js",
+    "types": "dist/exports.d.ts",
     "files": [
         "/dist",
         "/src",

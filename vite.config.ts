@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 export default defineConfig({
-    base: "./",
+    base: "/prove/",
     plugins: [
         react({
             jsxImportSource: "@emotion/react",
