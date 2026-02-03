@@ -16,8 +16,8 @@
         "type": "git",
         "url": "https://github.com/Exabyte-io/prove.git"
     },
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/exports.js",
+    "types": "dist/exports.d.ts",
     "files": [
         "/dist",
         "/src",
@@ -43,9 +43,9 @@
         "underscore.string": "^3.3.4"
     },
     "peerDependencies": {
-        "@exabyte-io/cove.js": "2025.10.24-0",
+        "@exabyte-io/cove.js": "*",
+        "@mui/icons-material": "^5.0.0",
         "@mui/material": "^5.0.0",
-        "@types/react": "^17.0.2",
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0"
     },
@@ -61,15 +61,18 @@
         "@babel/runtime-corejs3": "7.16.8",
         "@exabyte-io/cove.js": "2025.10.24-0",
         "@exabyte-io/eslint-config": "^2025.5.13-0",
+        "@mat3ra/tsconfig": "^2024.6.3-0",
+        "@mui/icons-material": "^5.11.0",
         "@mui/material": "^5.0.0",
         "@types/react": "^17.0.2",
+        "@types/react-dom": "^17.0.2",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
         "@vitejs/plugin-react": "^4.3.4",
         "chai": "^4.3.4",
         "eslint": "7.32.0",
         "eslint-config-airbnb": "19.0.2",
-        "eslint-config-prettier": "8.3.0",
+        "eslint-config-prettier": "^8.5.0",
         "eslint-import-resolver-exports": "^1.0.0-beta.2",
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jsdoc": "37.1.0",
