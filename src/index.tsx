@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { ScalarsList } from "./components/ScalarsList";
+import { ResultsView } from "./components/ResultsView";
 
 // eslint-disable-next-line  react/no-render-return-value
 const renderResults = (results: any[], newDomElement?: HTMLElement) => {
@@ -11,8 +11,8 @@ const renderResults = (results: any[], newDomElement?: HTMLElement) => {
         return;
     }
 
-    ReactDOM.render(<ScalarsList results={results} />, domElement);
+    ReactDOM.render(<ResultsView results={results} />, domElement);
 };
 
-window.renderResults = renderResults;
+(window as any).renderResults = renderResults;
 export { renderResults };

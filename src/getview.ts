@@ -1,4 +1,3 @@
-// including names of components separately
 import { PropertyName } from "@mat3ra/prode";
 
 type ViewConfig = {
