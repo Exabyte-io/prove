@@ -1,7 +1,7 @@
-// Main components
 export { ScalarsList } from "./components/ScalarsList";
-export { ResultsView } from "./components/ResultsView";
+export { ResultsView } from "./ResultsView";
 
-// Utilities
 export { getScalarViewConfig } from "./getview";
 export type { PropertyWithConfig } from "./getview";
+
+export { renderResults } from "./index";

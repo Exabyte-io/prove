@@ -1,7 +1,8 @@
+import ThemeProvider from "@exabyte-io/cove.js/dist/theme/provider";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { ResultsView } from "./components/ResultsView";
+import { ResultsView } from "./ResultsView";
 
 // eslint-disable-next-line  react/no-render-return-value
 const renderResults = (results: any[], newDomElement?: HTMLElement) => {
@@ -11,7 +12,12 @@ const renderResults = (results: any[], newDomElement?: HTMLElement) => {
         return;
     }
 
-    ReactDOM.render(<ResultsView results={results} />, domElement);
+    ReactDOM.render(
+        <ThemeProvider>
+            <ResultsView results={results} />
+        </ThemeProvider>,
+        domElement,
+    );
 };
 
 (window as any).renderResults = renderResults;

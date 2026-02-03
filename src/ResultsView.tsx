@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ScalarsList } from "./ScalarsList";
+import { ScalarsList } from "./components/ScalarsList";
 
 interface PropertyResult {
     name: string;
@@ -15,4 +15,3 @@ interface ResultsViewProps {
 export const ResultsView: React.FC<ResultsViewProps> = ({ results = [] }) => {
     return <ScalarsList results={results} />;
 };
-
