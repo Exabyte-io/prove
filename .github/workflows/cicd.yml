@@ -69,8 +69,7 @@ jobs:
           npm-options: '--legacy-peer-deps'
 
   deploy-bundle:
-    needs: [run-js-tests]
-    if: github.ref_name == 'main'
+    needs: [publish-js-package]
     runs-on: ubuntu-latest
     strategy:
       matrix:
