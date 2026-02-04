@@ -3,12 +3,12 @@
 
 # @mat3ra/prove
 
-Property visualization components for the Mat3ra workflow ecosystem.
+Property visualization components for the Mat3ra ecosystem.
 
 
-### Installation
+## 1. Installation.
 
-For usage within a javascript project:
+For usage within a JavaScript project:
 
 ```bash
 npm install @mat3ra/prove
@@ -21,7 +21,7 @@ git clone https://github.com/Exabyte-io/prove.git
 ```
 
 
-### Contribution
+## 2. Contributions
 
 This repository is an [open-source](LICENSE.md) work-in-progress and we welcome contributions.
 
