@@ -7,7 +7,15 @@
 </head>
 <body>
 <noscript>Please enable JavaScript to view this website correctly.</noscript>
-<div id="root" style="width:100vw; height:100vh;"></div>
+<div style="padding: 10px; background: #f0f0f0; border-bottom: 1px solid #ccc;">
+    <label>Theme: 
+        <select id="theme-selector">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+    </label>
+</div>
+<div id="root" style="width:100vw; height:calc(100vh - 50px);"></div>
 <script type="module">
     import { renderResults } from "./src/index";
     const exampleResults = [
@@ -45,7 +53,17 @@
             ]
         }
     ];
-    renderResults(exampleResults);
+    
+    function render() {
+        const theme = document.getElementById("theme-selector").value;
+        renderResults(exampleResults, document.getElementById("root"), undefined, { theme });
+    }
+    
+    // Initial render
+    render();
+    
+    // Re-render on theme change
+    document.getElementById("theme-selector").addEventListener("change", render);
 </script>
 </body>
 </html>
