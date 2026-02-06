@@ -35,12 +35,22 @@ export default defineConfig({
     define: {
         __dirname: JSON.stringify(__dirname),
     },
+    optimizeDeps: {
+        include: ["@mat3ra/wode"],
+    },
     server: {
         port: 3003,
     },
     build: {
         outDir: "build",
         rollupOptions: {
+            external: [
+                "@mat3ra/wode",
+                "@mat3ra/ade",
+                "@mat3ra/ide",
+                "@mat3ra/mode",
+                "@mat3ra/standata",
+            ],
             output: {
                 entryFileNames: "main.js",
                 chunkFileNames: "[name]-[hash].js",

@@ -14,7 +14,36 @@
         { name: "total_energy", value: -123.456, units: "eV" },
         { name: "pressure", value: 0.5, units: "GPa" },
         { name: "fermi_energy", value: 5.234, units: "eV" },
-        { name: "total_force", value: 0.001234, units: "eV/Å" }
+        { name: "total_force", value: 0.001234, units: "eV/Å" },
+        {
+            name: "band_gaps",
+            units: "eV",
+            values: [
+                {
+                    type: "direct",
+                    value: 1.234,
+                    units: "eV",
+                    spin: 0,
+                    kpointValence: [0.0, 0.0, 0.0],
+                    kpointConduction: [0.0, 0.0, 0.0],
+                    eigenvalueValence: -0.5,
+                    eigenvalueConduction: 0.734
+                }
+            ],
+            eigenvalues: [
+                {
+                    kpoint: [0.0, 0.0, 0.0],
+                    weight: 0.125,
+                    eigenvalues: [
+                        {
+                            spin: 0,
+                            energies: [-5.234, -2.123, -0.5, 0.734, 2.456],
+                            occupations: [1.0, 1.0, 1.0, 0.0, 0.0]
+                        }
+                    ]
+                }
+            ]
+        }
     ];
     renderResults(exampleResults);
 </script>
