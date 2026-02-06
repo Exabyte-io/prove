@@ -44,13 +44,6 @@ export default defineConfig({
     build: {
         outDir: "build",
         rollupOptions: {
-            external: [
-                "@mat3ra/wode",
-                "@mat3ra/ade",
-                "@mat3ra/ide",
-                "@mat3ra/mode",
-                "@mat3ra/standata",
-            ],
             output: {
                 entryFileNames: "main.js",
                 chunkFileNames: "[name]-[hash].js",
