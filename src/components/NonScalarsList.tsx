@@ -6,6 +6,7 @@ import React from "react";
 import s from "underscore.string";
 
 import type { PropertiesProveExtraConfig } from "../types";
+import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
 import { FileContent } from "./FileContent";
@@ -64,6 +65,18 @@ const PROPERTY_VIEWS = {
 
 type SupportedPropertyName = keyof typeof PROPERTY_VIEWS;
 
+function addPointsPath(data: any, extraConfig?: PropertiesProveExtraConfig) {
+    if (
+        ![PropertyName.band_structure, PropertyName.phonon_dispersions].includes(data?.name) ||
+        data?.pointsPath
+    ) {
+        return data;
+    }
+    const material = extraConfig?.material || extraConfig?.materials?.[0];
+    const pointsPath = material ? calculatePointsPath(material, data) : undefined;
+    return Array.isArray(pointsPath) && pointsPath.length ? { ...data, pointsPath } : data;
+}
+
 export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProps) {
     const nonScalarResults = React.useMemo(() => {
         const nonScalarResultsNames = PropertyFactory.getScalarPropertyNames();
@@ -76,7 +89,8 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
         const widgetElements: React.ReactElement[] = [];
 
         nonScalarResults.forEach((data, index) => {
-            const property = PropertyFactory.createProperty(data);
+            const inferredData = addPointsPath(data, extraConfig);
+            const property = PropertyFactory.createProperty(inferredData);
             const componentConfig = PROPERTY_VIEWS[data.name as SupportedPropertyName];
             const propertyId = s.slugify(data.name);
 
@@ -90,7 +104,7 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
                     <Grid item data-tid={propertyId} key={propertyId + index.toString()} {...size}>
                         <ResultComponent
                             property={property}
-                            data={data}
+                            data={inferredData}
                             key={propertyId}
                             title={s.humanize(data.name)}
                             extraConfig={extraConfig}

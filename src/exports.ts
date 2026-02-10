@@ -35,5 +35,8 @@ export type { BandGapData } from "./components/include/BandGap";
 export { EigenvaluesAtKpoint } from "./components/include/EigenvaluesAtKpoint";
 export type { EigenvaluesAtKpointData } from "./components/include/EigenvaluesAtKpoint";
 
+// Utilities
+export { calculatePointsPath } from "./utils/calculatePointsPath";
+
 // Types
 export type { PropertiesProveExtraConfig, FileMetadata, OnFileContentsLoad } from "./types/index";
