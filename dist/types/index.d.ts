@@ -6,6 +6,7 @@ export type FileMetadata = {
 };
 export type OnFileContentsLoad = (contents: string | object[], fileMetadata: FileMetadata) => void;
 export interface PropertiesProveExtraConfig {
+    material: MaterialSchema;
     materials: MaterialSchema[];
     MaterialComponent: React.ComponentType<any>;
     MaterialComponentProps: Record<string, unknown>;

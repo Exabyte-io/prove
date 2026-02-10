@@ -3,6 +3,7 @@ import { PropertyFactory, PropertyName } from "@mat3ra/prode";
 import Grid from "@mui/material/Grid";
 import React from "react";
 import s from "underscore.string";
+import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
 import { FileContent } from "./FileContent";
@@ -31,10 +32,12 @@ const PROPERTY_VIEWS = {
     [PropertyName.charge_density_profile]: TWO_DIMENSIONAL_PLOT,
     [PropertyName.average_potential_profile]: TWO_DIMENSIONAL_PLOT,
     [PropertyName.atomic_forces]: TENSOR,
+    [PropertyName.atomic_constraints]: TENSOR,
     [PropertyName.stress_tensor]: TENSOR,
     [PropertyName.magnetic_moments]: TENSOR,
     [PropertyName.final_structure]: { component: Structure, size: LARGE },
     [PropertyName.total_energy_contributions]: { component: OneLevelObject, size: LARGE },
+    [PropertyName.jupyter_notebook_endpoint]: { component: OneLevelObject, size: LARGE },
     [PropertyName.band_gaps]: { component: BandGaps, size: LARGE },
     [PropertyName.file_content]: { component: FileContent, size: SMALL },
     [PropertyName.dielectric_tensor]: { component: DielectricTensor, size: LARGE },
@@ -43,6 +46,16 @@ const PROPERTY_VIEWS = {
     [PropertyName.hubbard_v_nn]: { component: HubbardVNN, size: LARGE },
     [PropertyName.workflow_pyml_predict]: { component: WorkflowLink, size: SMALL },
 };
+function addPointsPath(data, extraConfig) {
+    var _a;
+    if (![PropertyName.band_structure, PropertyName.phonon_dispersions].includes(data === null || data === void 0 ? void 0 : data.name) ||
+        (data === null || data === void 0 ? void 0 : data.pointsPath)) {
+        return data;
+    }
+    const material = (extraConfig === null || extraConfig === void 0 ? void 0 : extraConfig.material) || ((_a = extraConfig === null || extraConfig === void 0 ? void 0 : extraConfig.materials) === null || _a === void 0 ? void 0 : _a[0]);
+    const pointsPath = material ? calculatePointsPath(material, data) : undefined;
+    return Array.isArray(pointsPath) && pointsPath.length ? { ...data, pointsPath } : data;
+}
 export function NonScalarsList({ results = [], extraConfig }) {
     const nonScalarResults = React.useMemo(() => {
         const nonScalarResultsNames = PropertyFactory.getScalarPropertyNames();
@@ -53,7 +66,8 @@ export function NonScalarsList({ results = [], extraConfig }) {
     const widgets = React.useMemo(() => {
         const widgetElements = [];
         nonScalarResults.forEach((data, index) => {
-            const property = PropertyFactory.createProperty(data);
+            const inferredData = addPointsPath(data, extraConfig);
+            const property = PropertyFactory.createProperty(inferredData);
             const componentConfig = PROPERTY_VIEWS[data.name];
             const propertyId = s.slugify(data.name);
             if (componentConfig) {
@@ -62,7 +76,7 @@ export function NonScalarsList({ results = [], extraConfig }) {
                 // We add the index to propertyID here to ensure a unique key exists for each property
                 // If we run into a bug in the future where we try to update the results dynamically, but they don't
                 // actually update, see https://stackoverflow.com/q/41703160/
-                _jsx(Grid, { item: true, "data-tid": propertyId, ...size, children: _jsx(ResultComponent, { property: property, data: data, title: s.humanize(data.name), extraConfig: extraConfig }, propertyId) }, propertyId + index.toString()));
+                _jsx(Grid, { item: true, "data-tid": propertyId, ...size, children: _jsx(ResultComponent, { property: property, data: inferredData, title: s.humanize(data.name), extraConfig: extraConfig }, propertyId) }, propertyId + index.toString()));
             }
         });
         return widgetElements;
