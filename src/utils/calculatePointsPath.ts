@@ -1,24 +1,21 @@
-import { ReciprocalLattice } from "@mat3ra/made";
+import { Material, ReciprocalLattice } from "@mat3ra/made";
+import { KPointCoordinates } from "@mat3ra/made/dist/js/lattice/reciprocal/lattice_reciprocal";
 import { PropertyName } from "@mat3ra/prode";
 
-type SupportedProperty = { name?: string; xDataArray?: unknown };
+type SupportedProperty = { name: PropertyName; xDataArray?: KPointCoordinates[] };
 
-function getLattice(material: any) {
+function getLattice(material: Material) {
     return material?.lattice || material?._json?.lattice;
 }
 
-export function calculatePointsPath(material: any, property: SupportedProperty) {
-    if (
-        ![PropertyName.band_structure, PropertyName.phonon_dispersions].includes(
-            property?.name as any,
-        )
-    ) {
+export function calculatePointsPath(material: Material, property: SupportedProperty) {
+    if (![PropertyName.band_structure, PropertyName.phonon_dispersions].includes(property.name)) {
         return undefined;
     }
 
     const lattice = getLattice(material);
-    if (!lattice || !property?.xDataArray) return undefined;
+    if (!lattice || !property.xDataArray) return undefined;
 
     const rl = new ReciprocalLattice(lattice);
-    return rl.extractKpointPath(property.xDataArray as any);
+    return rl.extractKpointPath(property.xDataArray);
 }
