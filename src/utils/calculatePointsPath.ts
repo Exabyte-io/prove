@@ -17,6 +17,6 @@ export function calculatePointsPath(material: Material, property: SupportedPrope
     const lattice = getLattice(material);
     if (!lattice || !property.xDataArray) return undefined;
 
-    const rl = new ReciprocalLattice(lattice);
-    return rl.extractKpointPath(property.xDataArray);
+    const reciprocalLattice = new ReciprocalLattice(lattice);
+    return reciprocalLattice.extractKpointPath(property.xDataArray);
 }
