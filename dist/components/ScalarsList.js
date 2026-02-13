@@ -21,7 +21,7 @@ export class ScalarsList extends React.Component {
         this.scalarResults.forEach((result) => {
             const config = getScalarViewConfig(result.name) || {};
             const propertyId = s.slugify(result.name);
-            if (result.value !== undefined && config) {
+            if (typeof result.value === "number" && config) {
                 widgets.push(_jsx(Grid, { item: true, xs: 12, sm: 6, md: 3, "data-tid": propertyId, children: _jsx(Box, { mb: 2, children: _jsx(Scalar, { icon: config.icon || "", value: numberFormat(result.value, config.decimals), title: s.humanize(result.name), units: result.units }) }) }, propertyId));
             }
         });
