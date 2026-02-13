@@ -24,9 +24,12 @@ export class ScalarsList extends React.Component<ScalarsListProps> {
         data: PropertyData,
         scalarResultsNames: PropertyName[],
     ): data is ScalarPropertyData {
-        if (!scalarResultsNames.includes(data.name as PropertyName)) return false;
-        if (!("value" in data) || typeof data.value !== "number") return false;
-        return Object.keys(data).length > 1;
+        return (
+            scalarResultsNames.includes(data.name as PropertyName) &&
+            "value" in data &&
+            typeof data.value === "number" &&
+            Object.keys(data).length > 1
+        );
     }
 
     get scalarResults(): ScalarPropertyData[] {
@@ -44,8 +47,7 @@ export class ScalarsList extends React.Component<ScalarsListProps> {
         this.scalarResults.forEach((result) => {
             const config = getScalarViewConfig(result.name as PropertyName) || {};
             const propertyId = s.slugify(result.name);
-            let units: string | undefined;
-            if ("units" in result) units = result.units;
+            const units = "units" in result ? result.units : undefined;
             if (config) {
                 widgets.push(
                     <Grid item xs={12} sm={6} md={3} key={propertyId} data-tid={propertyId}>

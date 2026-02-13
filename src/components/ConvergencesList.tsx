@@ -1,5 +1,5 @@
-import { PropertyFactory } from "@mat3ra/prode";
 import type { PropertyName } from "@mat3ra/prode";
+import { PropertyFactory } from "@mat3ra/prode";
 import React, { ReactElement } from "react";
 import s from "underscore.string";
 
@@ -23,7 +23,10 @@ export function ConvergencesList({
         .filter((monitor) => convergencePropertyNames.includes(monitor.name as PropertyName))
         .map((monitor) => {
             const property = PropertyFactory.createProperty(monitor);
-            const config = (property as { chartConfig?: unknown }).chartConfig;
+            const rawConfig = (property as { chartConfig?: unknown }).chartConfig;
+
+            const config =
+                rawConfig && typeof rawConfig === "object" ? (rawConfig as object) : undefined;
             const propertyId = s.slugify(idPrefix + " " + monitor.name);
             return (
                 <Chart
