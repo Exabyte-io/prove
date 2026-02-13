@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import type { PropertyHolderSchema } from "@mat3ra/esse/dist/js/types";
 import { PropertyFactory, PropertyName } from "@mat3ra/prode";
 import Grid, { type GridProps } from "@mui/material/Grid";
 import React from "react";
 import s from "underscore.string";
 
-import type { PropertiesProveExtraConfig } from "../types";
+import type { PropertiesProveExtraConfig, PropertyData } from "../types";
 import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
@@ -20,7 +19,7 @@ import { TwoDimensionalPlot } from "./TwoDimensionalPlot";
 import { WorkflowLink } from "./WorkflowLink";
 
 interface NonScalarsListProps {
-    results?: PropertyHolderSchema["data"][];
+    results?: PropertyData[];
     extraConfig?: PropertiesProveExtraConfig;
 }
 
@@ -81,7 +80,7 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
     const nonScalarResults = React.useMemo(() => {
         const nonScalarResultsNames = PropertyFactory.getScalarPropertyNames();
         return results.filter((x) => {
-            return !nonScalarResultsNames.includes(x.name as any) && Object.keys(x).length > 1;
+            return !nonScalarResultsNames.includes(x.name as PropertyName) && Object.keys(x).length > 1;
         });
     }, [results]);
 

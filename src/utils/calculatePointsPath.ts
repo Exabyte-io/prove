@@ -1,4 +1,5 @@
-import { Material, ReciprocalLattice } from "@mat3ra/made";
+import type { Material } from "@mat3ra/made";
+import { ReciprocalLattice } from "@mat3ra/made";
 import { KPointCoordinates } from "@mat3ra/made/dist/js/lattice/reciprocal/lattice_reciprocal";
 import { PropertyName } from "@mat3ra/prode";
 

@@ -1,13 +1,14 @@
-import type { PropertyHolderSchema } from "@mat3ra/esse/dist/js/types";
 import { PropertyFactory } from "@mat3ra/prode";
+import type { PropertyName } from "@mat3ra/prode";
 import React, { ReactElement } from "react";
 import s from "underscore.string";
 
+import type { PropertyData } from "../types";
 import { Chart } from "./primitive/Chart";
 
 interface ConvergencesListProps {
     idPrefix: string;
-    monitors?: PropertyHolderSchema["data"][];
+    monitors?: PropertyData[];
     idGenerator?: () => string;
 }
 
@@ -19,10 +20,10 @@ export function ConvergencesList({
     const convergencePropertyNames = PropertyFactory.getConvergencePropertyNames();
 
     const monitorComponents: ReactElement[] = monitors
-        .filter((monitor) => convergencePropertyNames.includes(monitor.name as any))
+        .filter((monitor) => convergencePropertyNames.includes(monitor.name as PropertyName))
         .map((monitor) => {
             const property = PropertyFactory.createProperty(monitor);
-            const config = (property as any).chartConfig;
+            const config = (property as { chartConfig?: unknown }).chartConfig;
             const propertyId = s.slugify(idPrefix + " " + monitor.name);
             return (
                 <Chart

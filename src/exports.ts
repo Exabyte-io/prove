@@ -39,4 +39,9 @@ export type { EigenvaluesAtKpointData } from "./components/include/EigenvaluesAt
 export { calculatePointsPath } from "./utils/calculatePointsPath";
 
 // Types
-export type { PropertiesProveExtraConfig, FileMetadata, OnFileContentsLoad } from "./types/index";
+export type {
+    PropertiesProveExtraConfig,
+    FileMetadata,
+    OnFileContentsLoad,
+    PropertyData,
+} from "./types/index";

@@ -75,6 +75,6 @@ const PROPERTY_VIEWS: Record<PropertyWithConfig, ViewConfig> = {
  * This function makes sure the right view config is returned for a scalar property.
  * @summary Safely return view config for scalar properties.
  */
-export function getScalarViewConfig(propertyName: PropertyWithConfig) {
-    return PROPERTY_VIEWS[propertyName];
+export function getScalarViewConfig(propertyName: PropertyName): ViewConfig | undefined {
+    return (PROPERTY_VIEWS as Partial<Record<PropertyName, ViewConfig>>)[propertyName];
 }
