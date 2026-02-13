@@ -80,7 +80,9 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
     const nonScalarResults = React.useMemo(() => {
         const nonScalarResultsNames = PropertyFactory.getScalarPropertyNames();
         return results.filter((x) => {
-            return !nonScalarResultsNames.includes(x.name as PropertyName) && Object.keys(x).length > 1;
+            return (
+                !nonScalarResultsNames.includes(x.name as PropertyName) && Object.keys(x).length > 1
+            );
         });
     }, [results]);
 
@@ -88,12 +90,12 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
         const widgetElements: React.ReactElement[] = [];
 
         nonScalarResults.forEach((data, index) => {
-            const inferredData = addPointsPath(data, extraConfig);
-            const property = PropertyFactory.createProperty(inferredData);
+            const updatedData = addPointsPath(data, extraConfig);
             const componentConfig = PROPERTY_VIEWS[data.name as SupportedPropertyName];
             const propertyId = s.slugify(data.name);
 
             if (componentConfig) {
+                const property = PropertyFactory.createProperty(updatedData);
                 const { component: ResultComponent, size } = componentConfig;
                 widgetElements.push(
                     // We add the index to propertyID here to ensure a unique key exists for each property
@@ -103,7 +105,7 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
                     <Grid item data-tid={propertyId} key={propertyId + index.toString()} {...size}>
                         <ResultComponent
                             property={property}
-                            data={inferredData}
+                            data={updatedData}
                             key={propertyId}
                             title={s.humanize(data.name)}
                             extraConfig={extraConfig}
