@@ -11,7 +11,7 @@
 <script type="module">
     import { renderResults } from "./src/index";
     
-    const exampleResults = await fetch("./examples/properties.json")
+    const exampleResults = fetch("./examples/properties.json")
         .then((response) => response.json())
         .catch((error) => {
             console.error("Failed to load example properties:", error);
