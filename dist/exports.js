@@ -24,3 +24,5 @@ export { ReactHighchartsResizable } from "./components/charts/ReactHighchartsRes
 // Include components
 export { BandGap } from "./components/include/BandGap";
 export { EigenvaluesAtKpoint } from "./components/include/EigenvaluesAtKpoint";
+// Utilities
+export { calculatePointsPath } from "./utils/calculatePointsPath";

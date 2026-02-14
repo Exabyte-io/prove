@@ -10,41 +10,53 @@
 <div id="root" style="width:100vw; height:100vh;"></div>
 <script type="module">
     import { renderResults } from "./src/index";
+
+    import bandStructure from "./examples/band_structure.json";
+
+    import totalEnergy from "@mat3ra/esse/dist/js/example/properties_directory/scalar/total_energy.json";
+    import pressure from "@mat3ra/esse/dist/js/example/properties_directory/scalar/pressure.json";
+    import fermiEnergy from "@mat3ra/esse/dist/js/example/properties_directory/scalar/fermi_energy.json";
+    import totalForce from "@mat3ra/esse/dist/js/example/properties_directory/scalar/total_force.json";
+
+    import reactionEnergyBarrier from "@mat3ra/esse/dist/js/example/properties_directory/scalar/reaction_energy_barrier.json";
+    import surfaceEnergy from "@mat3ra/esse/dist/js/example/properties_directory/scalar/surface_energy.json";
+    import valenceBandOffset from "@mat3ra/esse/dist/js/example/properties_directory/scalar/valence_band_offset.json";
+    import zeroPointEnergy from "@mat3ra/esse/dist/js/example/properties_directory/scalar/zero_point_energy.json";
+
+    import bandGaps from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/band_gaps.json";
+    import densityOfStates from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/density_of_states.json";
+    import dielectricTensor from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/dielectric_tensor.json";
+    import phononDos from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/phonon_dos.json";
+    import potentialProfile from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/potential_profile.json";
+    import reactionEnergyProfile from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/reaction_energy_profile.json";
+    import stressTensor from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/stress_tensor.json";
+    import totalEnergyContributions from "@mat3ra/esse/dist/js/example/properties_directory/non_scalar/total_energy_contributions.json";
+
+    import atomicForces from "@mat3ra/esse/dist/js/example/properties_directory/structural/atomic_forces.json";
+    import magneticMoments from "@mat3ra/esse/dist/js/example/properties_directory/structural/magnetic_moments.json";
+
     const exampleResults = [
-        { name: "total_energy", value: -123.456, units: "eV" },
-        { name: "pressure", value: 0.5, units: "GPa" },
-        { name: "fermi_energy", value: 5.234, units: "eV" },
-        { name: "total_force", value: 0.001234, units: "eV/Å" },
-        {
-            name: "band_gaps",
-            units: "eV",
-            values: [
-                {
-                    type: "direct",
-                    value: 1.234,
-                    units: "eV",
-                    spin: 0,
-                    kpointValence: [0.0, 0.0, 0.0],
-                    kpointConduction: [0.0, 0.0, 0.0],
-                    eigenvalueValence: -0.5,
-                    eigenvalueConduction: 0.734
-                }
-            ],
-            eigenvalues: [
-                {
-                    kpoint: [0.0, 0.0, 0.0],
-                    weight: 0.125,
-                    eigenvalues: [
-                        {
-                            spin: 0,
-                            energies: [-5.234, -2.123, -0.5, 0.734, 2.456],
-                            occupations: [1.0, 1.0, 1.0, 0.0, 0.0]
-                        }
-                    ]
-                }
-            ]
-        }
+        totalEnergy,
+        pressure,
+        fermiEnergy,
+        totalForce,
+        reactionEnergyBarrier,
+        surfaceEnergy,
+        valenceBandOffset,
+        zeroPointEnergy,
+        bandGaps,
+        bandStructure,
+        densityOfStates,
+        dielectricTensor,
+        phononDos,
+        potentialProfile,
+        reactionEnergyProfile,
+        stressTensor,
+        totalEnergyContributions,
+        atomicForces,
+        magneticMoments,
     ];
+
     renderResults(exampleResults);
 </script>
 </body>

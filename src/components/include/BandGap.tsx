@@ -22,17 +22,20 @@ function Item({ title, value }: ItemProps) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: isMobile ? "" : "space-between",
-            }}>
+            }}
+        >
             <Typography
                 variant="body2"
                 color="text.primary"
-                sx={{ width: isMobile ? "50%" : "initial" }}>
+                sx={{ width: isMobile ? "50%" : "initial" }}
+            >
                 {title}
             </Typography>
             <Typography
                 variant="body2"
                 color="text.primary"
-                sx={{ width: isMobile ? "50%" : "initial" }}>
+                sx={{ width: isMobile ? "50%" : "initial" }}
+            >
                 {value}
             </Typography>
         </Box>
@@ -104,4 +107,3 @@ export function BandGap({ data: gap, showSpin = false }: BandGapProps) {
         </Grid>
     );
 }
-

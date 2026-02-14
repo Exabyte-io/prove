@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import type { PropertyHolderSchema } from "@mat3ra/esse/dist/js/types";
 import { PropertyFactory, PropertyName } from "@mat3ra/prode";
 import Grid, { type GridProps } from "@mui/material/Grid";
 import React from "react";
 import s from "underscore.string";
 
-import type { PropertiesProveExtraConfig } from "../types";
+import type { PropertiesProveExtraConfig, PropertyData } from "../types";
+import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
 import { FileContent } from "./FileContent";
@@ -19,7 +19,7 @@ import { TwoDimensionalPlot } from "./TwoDimensionalPlot";
 import { WorkflowLink } from "./WorkflowLink";
 
 interface NonScalarsListProps {
-    results?: PropertyHolderSchema["data"][];
+    results?: PropertyData[];
     extraConfig?: PropertiesProveExtraConfig;
 }
 
@@ -64,11 +64,25 @@ const PROPERTY_VIEWS = {
 
 type SupportedPropertyName = keyof typeof PROPERTY_VIEWS;
 
+function addPointsPath(data: any, extraConfig?: PropertiesProveExtraConfig) {
+    if (
+        ![PropertyName.band_structure, PropertyName.phonon_dispersions].includes(data?.name) ||
+        data?.pointsPath
+    ) {
+        return data;
+    }
+    const material = extraConfig?.material || extraConfig?.materials?.[0];
+    const pointsPath = material ? calculatePointsPath(material, data) : undefined;
+    return Array.isArray(pointsPath) && pointsPath.length ? { ...data, pointsPath } : data;
+}
+
 export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProps) {
     const nonScalarResults = React.useMemo(() => {
         const nonScalarResultsNames = PropertyFactory.getScalarPropertyNames();
         return results.filter((x) => {
-            return !nonScalarResultsNames.includes(x.name as any) && Object.keys(x).length > 1;
+            return (
+                !nonScalarResultsNames.includes(x.name as PropertyName) && Object.keys(x).length > 1
+            );
         });
     }, [results]);
 
@@ -76,11 +90,12 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
         const widgetElements: React.ReactElement[] = [];
 
         nonScalarResults.forEach((data, index) => {
-            const property = PropertyFactory.createProperty(data);
+            const updatedData = addPointsPath(data, extraConfig);
             const componentConfig = PROPERTY_VIEWS[data.name as SupportedPropertyName];
             const propertyId = s.slugify(data.name);
 
             if (componentConfig) {
+                const property = PropertyFactory.createProperty(updatedData);
                 const { component: ResultComponent, size } = componentConfig;
                 widgetElements.push(
                     // We add the index to propertyID here to ensure a unique key exists for each property
@@ -90,7 +105,7 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
                     <Grid item data-tid={propertyId} key={propertyId + index.toString()} {...size}>
                         <ResultComponent
                             property={property}
-                            data={data}
+                            data={updatedData}
                             key={propertyId}
                             title={s.humanize(data.name)}
                             extraConfig={extraConfig}
