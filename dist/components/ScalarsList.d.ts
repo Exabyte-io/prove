@@ -1,14 +1,14 @@
-import type { PropertyHolderSchema } from "@mat3ra/esse/dist/js/types";
+import type { PropertyName } from "@mat3ra/prode";
 import React from "react";
-type PropertyData = PropertyHolderSchema["data"];
-type ScalarPropertyData = PropertyData & {
-    value?: number;
-    units?: string;
-};
+import type { PropertyData } from "../types";
+type ScalarPropertyData = Extract<PropertyData, {
+    value: number;
+}>;
 interface ScalarsListProps {
     results?: PropertyData[];
 }
 export declare class ScalarsList extends React.Component<ScalarsListProps> {
+    isScalarPropertyData(data: PropertyData, scalarResultsNames: PropertyName[]): data is ScalarPropertyData;
     get scalarResults(): ScalarPropertyData[];
     render(): import("react/jsx-runtime").JSX.Element | null;
 }

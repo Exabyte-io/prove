@@ -18,6 +18,18 @@ const PROPERTY_VIEWS = {
         color: "white",
         decimals: 3,
     },
+    [PropertyName.homo_energy]: {
+        icon: "entities.property.energy",
+        title: "Homo energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.lumo_energy]: {
+        icon: "entities.property.energy",
+        title: "Lumo energy",
+        color: "white",
+        decimals: 3,
+    },
     [PropertyName.surface_energy]: {
         icon: "entities.property.energy",
         title: "Surface energy",

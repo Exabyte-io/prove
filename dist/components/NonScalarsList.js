@@ -1,4 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
+/* eslint-disable react/jsx-props-no-spreading */
 import { PropertyFactory, PropertyName } from "@mat3ra/prode";
 import Grid from "@mui/material/Grid";
 import React from "react";
@@ -60,23 +61,23 @@ export function NonScalarsList({ results = [], extraConfig }) {
     const nonScalarResults = React.useMemo(() => {
         const nonScalarResultsNames = PropertyFactory.getScalarPropertyNames();
         return results.filter((x) => {
-            return !nonScalarResultsNames.includes(x.name) && Object.keys(x).length > 1;
+            return (!nonScalarResultsNames.includes(x.name) && Object.keys(x).length > 1);
         });
     }, [results]);
     const widgets = React.useMemo(() => {
         const widgetElements = [];
         nonScalarResults.forEach((data, index) => {
-            const inferredData = addPointsPath(data, extraConfig);
-            const property = PropertyFactory.createProperty(inferredData);
+            const updatedData = addPointsPath(data, extraConfig);
             const componentConfig = PROPERTY_VIEWS[data.name];
             const propertyId = s.slugify(data.name);
             if (componentConfig) {
+                const property = PropertyFactory.createProperty(updatedData);
                 const { component: ResultComponent, size } = componentConfig;
                 widgetElements.push(
                 // We add the index to propertyID here to ensure a unique key exists for each property
                 // If we run into a bug in the future where we try to update the results dynamically, but they don't
                 // actually update, see https://stackoverflow.com/q/41703160/
-                _jsx(Grid, { item: true, "data-tid": propertyId, ...size, children: _jsx(ResultComponent, { property: property, data: inferredData, title: s.humanize(data.name), extraConfig: extraConfig }, propertyId) }, propertyId + index.toString()));
+                _jsx(Grid, { item: true, "data-tid": propertyId, ...size, children: _jsx(ResultComponent, { property: property, data: updatedData, title: s.humanize(data.name), extraConfig: extraConfig }, propertyId) }, propertyId + index.toString()));
             }
         });
         return widgetElements;
