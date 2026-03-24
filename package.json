@@ -32,9 +32,9 @@
     "homepage": "https://github.com/Exabyte-io/prove",
     "dependencies": {
         "@mat3ra/code": "2025.10.24-0",
-        "@mat3ra/esse": "2026.1.23-0",
+        "@mat3ra/esse": "git+https://github.com/Exabyte-io/esse.git#f11c7519a4b76dde88318c5d4ee24d6fe9f3c152",
         "@mat3ra/made": "2025.11.13-0",
-        "@mat3ra/prode": "2026.3.14-0",
+        "@mat3ra/prode": "git+https://github.com/Exabyte-io/prode.git#686b0c64961edf661a55ea6f297ba09065247f05",
         "@mat3ra/utils": "2026.2.3-0",
         "@mui/styles":"^5.11.9",
         "highcharts": "^6.2.0",
