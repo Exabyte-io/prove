@@ -20,13 +20,13 @@ const PROPERTY_VIEWS = {
     },
     [PropertyName.homo_energy]: {
         icon: "entities.property.energy",
-        title: "Homo energy",
+        title: "HOMO energy",
         color: "white",
         decimals: 3,
     },
     [PropertyName.lumo_energy]: {
         icon: "entities.property.energy",
-        title: "Lumo energy",
+        title: "LUMO energy",
         color: "white",
         decimals: 3,
     },
