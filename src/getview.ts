@@ -11,6 +11,8 @@ export type PropertyWithConfig =
     | PropertyName.pressure
     | PropertyName.total_force
     | PropertyName.total_energy
+    | PropertyName.homo_energy
+    | PropertyName.lumo_energy
     | PropertyName.surface_energy
     | PropertyName.fermi_energy
     | PropertyName.reaction_energy_barrier
@@ -34,6 +36,18 @@ const PROPERTY_VIEWS: Record<PropertyWithConfig, ViewConfig> = {
     [PropertyName.total_energy]: {
         icon: "entities.property.energy",
         title: "Total energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.homo_energy]: {
+        icon: "entities.property.energy",
+        title: "HOMO energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.lumo_energy]: {
+        icon: "entities.property.energy",
+        title: "LUMO energy",
         color: "white",
         decimals: 3,
     },

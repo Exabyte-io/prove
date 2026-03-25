@@ -9,20 +9,25 @@ import { getScalarViewConfig } from "../getview";
 import { Scalar } from "./primitive/Scalar";
 const { numberFormat } = Utils.str;
 export class ScalarsList extends React.Component {
+    isScalarPropertyData(data, scalarResultsNames) {
+        return (scalarResultsNames.includes(data.name) &&
+            "value" in data &&
+            typeof data.value === "number" &&
+            Object.keys(data).length > 1);
+    }
     get scalarResults() {
         var _a;
         const scalarResultsNames = PropertyFactory.getScalarPropertyNames();
-        return (((_a = this.props.results) === null || _a === void 0 ? void 0 : _a.filter((x) => {
-            return scalarResultsNames.includes(x.name) && Object.keys(x).length > 1;
-        })) || []);
+        return (((_a = this.props.results) === null || _a === void 0 ? void 0 : _a.filter((x) => this.isScalarPropertyData(x, scalarResultsNames))) || []);
     }
     render() {
         const widgets = [];
         this.scalarResults.forEach((result) => {
             const config = getScalarViewConfig(result.name) || {};
             const propertyId = s.slugify(result.name);
-            if (typeof result.value === "number" && config) {
-                widgets.push(_jsx(Grid, { item: true, xs: 12, sm: 6, md: 3, "data-tid": propertyId, children: _jsx(Box, { mb: 2, children: _jsx(Scalar, { icon: config.icon || "", value: numberFormat(result.value, config.decimals), title: s.humanize(result.name), units: result.units }) }) }, propertyId));
+            const units = "units" in result ? result.units : undefined;
+            if (config) {
+                widgets.push(_jsx(Grid, { item: true, xs: 12, sm: 6, md: 3, "data-tid": propertyId, children: _jsx(Box, { mb: 2, children: _jsx(Scalar, { icon: config.icon || "", value: numberFormat(result.value, config.decimals), title: s.humanize(result.name), units: units }) }) }, propertyId));
             }
         });
         // auto-hide the component if no scalar results

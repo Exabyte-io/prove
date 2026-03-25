@@ -8,7 +8,8 @@ export function ConvergencesList({ idPrefix, monitors = [], idGenerator, }) {
         .filter((monitor) => convergencePropertyNames.includes(monitor.name))
         .map((monitor) => {
         const property = PropertyFactory.createProperty(monitor);
-        const config = property.chartConfig;
+        const rawConfig = property.chartConfig;
+        const config = rawConfig && typeof rawConfig === "object" ? rawConfig : undefined;
         const propertyId = s.slugify(idPrefix + " " + monitor.name);
         return (_jsx(Chart, { config: config, title: s.humanize(monitor.name), idGenerator: idGenerator }, propertyId));
     });

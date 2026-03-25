@@ -1,8 +1,7 @@
-import type { PropertyHolderSchema } from "@mat3ra/esse/dist/js/types";
 import React from "react";
-import type { PropertiesProveExtraConfig } from "./types";
+import type { PropertiesProveExtraConfig, PropertyData } from "./types";
 interface ResultsViewProps {
-    results?: PropertyHolderSchema["data"][];
+    results?: PropertyData[];
     extraConfig?: PropertiesProveExtraConfig;
 }
 export declare const ResultsView: React.FC<ResultsViewProps>;
