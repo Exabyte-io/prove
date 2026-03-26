@@ -55,7 +55,7 @@ export class ScalarsList extends React.Component<ScalarsListProps> {
                             <Scalar
                                 icon={config.icon || ""}
                                 value={numberFormat(result.value, config.decimals)}
-                                title={s.humanize(result.name)}
+                                title={config.title || s.humanize(result.name)}
                                 units={units}
                             />
                         </Box>
