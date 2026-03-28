@@ -48,6 +48,18 @@ const PROPERTY_VIEWS = {
         color: "white",
         decimals: 3,
     },
+    [PropertyName.thermal_correction_to_energy]: {
+        icon: "entities.property.energy",
+        title: "Thermal correction to energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.thermal_correction_to_enthalpy]: {
+        icon: "entities.property.energy",
+        title: "Thermal correction to enthalpy",
+        color: "white",
+        decimals: 3,
+    },
     [PropertyName.reaction_energy_barrier]: {
         icon: "entities.property.energy",
         title: "Reaction Energy Barrier",
