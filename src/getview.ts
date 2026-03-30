@@ -16,6 +16,8 @@ export type PropertyWithConfig =
     | PropertyName.surface_energy
     | PropertyName.fermi_energy
     | PropertyName.reaction_energy_barrier
+    | PropertyName.thermal_correction_to_energy
+    | PropertyName.thermal_correction_to_enthalpy
     | PropertyName.zero_point_energy
     | PropertyName.is_relaxed
     | PropertyName.valence_band_offset;
@@ -66,6 +68,18 @@ const PROPERTY_VIEWS: Record<PropertyWithConfig, ViewConfig> = {
     [PropertyName.zero_point_energy]: {
         icon: "entities.property.energy",
         title: "Zero point energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.thermal_correction_to_energy]: {
+        icon: "entities.property.energy",
+        title: "Thermal correction to energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.thermal_correction_to_enthalpy]: {
+        icon: "entities.property.energy",
+        title: "Thermal correction to enthalpy",
         color: "white",
         decimals: 3,
     },
