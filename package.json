@@ -34,7 +34,7 @@
         "@mat3ra/code": "2025.10.24-0",
         "@mat3ra/esse": "2026.3.29-0",
         "@mat3ra/made": "2025.11.13-0",
-        "@mat3ra/prode": "2026.3.30-0",
+        "@mat3ra/prode": "git+https://github.com/Exabyte-io/prode.git#a199afe4f1ece3908d938fd563819a1d3a5d6546",
         "@mat3ra/utils": "2026.2.3-0",
         "@mui/styles":"^5.11.9",
         "highcharts": "^6.2.0",
