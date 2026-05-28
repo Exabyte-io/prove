@@ -1,4 +1,4 @@
-import type { PropertyName } from "@mat3ra/prode";
+import { PropertyName } from "@mat3ra/prode";
 import React from "react";
 import type { PropertyData } from "../types";
 type ScalarPropertyData = Extract<PropertyData, {

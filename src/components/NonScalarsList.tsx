@@ -8,6 +8,7 @@ import type { PropertiesProveExtraConfig, PropertyData } from "../types";
 import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
+import { FormationEnergyReferences } from "./FormationEnergyReferences";
 import { FileContent } from "./FileContent";
 import { HubbardU } from "./HubbardU";
 import { HubbardV } from "./HubbardV";
@@ -60,6 +61,10 @@ const PROPERTY_VIEWS = {
     [PropertyName.hubbard_v]: { component: HubbardV, size: LARGE },
     [PropertyName.hubbard_v_nn]: { component: HubbardVNN, size: LARGE },
     [PropertyName.workflow_pyml_predict]: { component: WorkflowLink, size: SMALL },
+    [PropertyName.formation_energy_references]: {
+        component: FormationEnergyReferences,
+        size: LARGE,
+    },
 };
 
 type SupportedPropertyName = keyof typeof PROPERTY_VIEWS;
