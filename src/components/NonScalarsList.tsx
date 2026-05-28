@@ -103,6 +103,10 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
                 const property = PropertyFactory.createProperty(updatedData);
                 const { component: ResultComponent, size } = componentConfig;
                 widgetElements.push(
+                    // We add the index to propertyID here to ensure a unique key exists for each property
+                    // If we run into a bug in the future where we try to update the results dynamically, but they don't
+                    // actually update, see https://stackoverflow.com/q/41703160/
+
                     <Grid item data-tid={propertyId} key={propertyId + index.toString()} {...size}>
                         <ResultComponent
                             property={property}
