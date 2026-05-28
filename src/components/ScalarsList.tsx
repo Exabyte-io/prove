@@ -1,5 +1,4 @@
-import type { PropertyName } from "@mat3ra/prode";
-import { PropertyFactory } from "@mat3ra/prode";
+import { PropertyFactory, PropertyName } from "@mat3ra/prode";
 import { Utils } from "@mat3ra/utils";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";

@@ -8,6 +8,7 @@ import type { PropertiesProveExtraConfig, PropertyData } from "../types";
 import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
+import { ElementalReferenceEnergies } from "./ElementalReferenceEnergies";
 import { FileContent } from "./FileContent";
 import { HubbardU } from "./HubbardU";
 import { HubbardV } from "./HubbardV";
@@ -60,6 +61,10 @@ const PROPERTY_VIEWS = {
     [PropertyName.hubbard_v]: { component: HubbardV, size: LARGE },
     [PropertyName.hubbard_v_nn]: { component: HubbardVNN, size: LARGE },
     [PropertyName.workflow_pyml_predict]: { component: WorkflowLink, size: SMALL },
+    [PropertyName.elemental_reference_energies]: {
+        component: ElementalReferenceEnergies,
+        size: LARGE,
+    },
 };
 
 type SupportedPropertyName = keyof typeof PROPERTY_VIEWS;
@@ -98,10 +103,6 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
                 const property = PropertyFactory.createProperty(updatedData);
                 const { component: ResultComponent, size } = componentConfig;
                 widgetElements.push(
-                    // We add the index to propertyID here to ensure a unique key exists for each property
-                    // If we run into a bug in the future where we try to update the results dynamically, but they don't
-                    // actually update, see https://stackoverflow.com/q/41703160/
-
                     <Grid item data-tid={propertyId} key={propertyId + index.toString()} {...size}>
                         <ResultComponent
                             property={property}
