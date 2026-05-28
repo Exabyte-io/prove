@@ -1,4 +1,4 @@
-import type { ElementalReferenceEnergiesProperty } from "@mat3ra/prode";
+import type { FormationEnergyReferencesProperty } from "@mat3ra/prode";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -19,9 +19,8 @@ export interface FormationEnergyReferencesRow {
     precision_metric?: string | null;
 }
 
-interface ElementalReferenceEnergiesProps extends PropertyComponentProps {
-    property: ElementalReferenceEnergiesProperty;
-    title?: string;
+interface FormationEnergyReferencesProps extends PropertyComponentProps {
+    property: FormationEnergyReferencesProperty;
 }
 
 function formatNumber(value: number | null | undefined, decimals: number) {
@@ -44,7 +43,7 @@ function formatPrecision(row: FormationEnergyReferencesRow) {
     return row.precision_metric || "—";
 }
 
-export function ElementalReferenceEnergies({ property, title }: ElementalReferenceEnergiesProps) {
+export function FormationEnergyReferences({ property }: FormationEnergyReferencesProps) {
     const rows = property.value?.rows ?? [];
 
     if (!rows.length) {

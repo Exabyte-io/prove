@@ -7,7 +7,7 @@ import s from "underscore.string";
 import { calculatePointsPath } from "../utils/calculatePointsPath";
 import { BandGaps } from "./BandGaps";
 import { DielectricTensor } from "./DielectricTensor";
-import { ElementalReferenceEnergies } from "./ElementalReferenceEnergies";
+import { FormationEnergyReferences } from "./FormationEnergyReferences";
 import { FileContent } from "./FileContent";
 import { HubbardU } from "./HubbardU";
 import { HubbardV } from "./HubbardV";
@@ -47,8 +47,8 @@ const PROPERTY_VIEWS = {
     [PropertyName.hubbard_v]: { component: HubbardV, size: LARGE },
     [PropertyName.hubbard_v_nn]: { component: HubbardVNN, size: LARGE },
     [PropertyName.workflow_pyml_predict]: { component: WorkflowLink, size: SMALL },
-    [PropertyName.elemental_reference_energies]: {
-        component: ElementalReferenceEnergies,
+    [PropertyName.formation_energy_references]: {
+        component: FormationEnergyReferences,
         size: LARGE,
     },
 };
