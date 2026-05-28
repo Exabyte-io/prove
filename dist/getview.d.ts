@@ -2,6 +2,7 @@ import { PropertyName } from "@mat3ra/prode";
 type ViewConfig = {
     icon?: string;
     title?: string;
+    units?: string;
     color?: string;
     decimals?: number;
 };

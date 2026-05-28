@@ -1,7 +1,13 @@
 import type { PropertyHolderSchema } from "@mat3ra/esse/dist/js/types";
 import type { Material } from "@mat3ra/made";
 import type React from "react";
-export type PropertyData = PropertyHolderSchema["data"];
+export type PropertyPrecision = {
+    value?: number;
+    metric?: string;
+};
+export type PropertyData = PropertyHolderSchema["data"] & {
+    precision?: PropertyPrecision;
+};
 export type FileMetadata = {
     key: string;
     signedUrl: string;

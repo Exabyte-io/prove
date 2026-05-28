@@ -10,7 +10,7 @@ import React from "react";
 
 import type { PropertyComponentProps } from "./primitive/PropertyComponent";
 
-export interface FormationEnergyVerificationRow {
+export interface FormationEnergyReferencesRow {
     label: string;
     total_energy?: number | null;
     n_atoms?: number | null;
@@ -31,7 +31,7 @@ function formatNumber(value: number | null | undefined, decimals: number) {
     return value.toFixed(decimals);
 }
 
-function formatPrecision(row: FormationEnergyVerificationRow) {
+function formatPrecision(row: FormationEnergyReferencesRow) {
     if (row.precision_value == null && !row.precision_metric) {
         return "—";
     }
@@ -54,7 +54,7 @@ export function ElementalReferenceEnergies({ property, title }: ElementalReferen
     return (
         <Box p={4} sx={{ overflow: "auto" }}>
             <Typography variant="subtitle2" color="text.primary" gutterBottom>
-                {title || "Formation energy verification"}
+                Formation energy references
             </Typography>
             <Table size="small">
                 <TableHead>
@@ -67,7 +67,7 @@ export function ElementalReferenceEnergies({ property, title }: ElementalReferen
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row: FormationEnergyReferencesRow) => (
                         <TableRow key={row.label}>
                             <TableCell>{row.label}</TableCell>
                             <TableCell align="right">{formatNumber(row.total_energy, 6)}</TableCell>

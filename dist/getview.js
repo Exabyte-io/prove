@@ -33,6 +33,7 @@ const PROPERTY_VIEWS = {
     [PropertyName.formation_energy]: {
         icon: "entities.property.energy",
         title: "Formation energy",
+        units: "eV/atom",
         color: "white",
         decimals: 3,
     },
