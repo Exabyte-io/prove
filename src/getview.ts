@@ -14,6 +14,7 @@ export type PropertyWithConfig =
     | PropertyName.homo_energy
     | PropertyName.lumo_energy
     | PropertyName.surface_energy
+    | PropertyName.formation_energy
     | PropertyName.fermi_energy
     | PropertyName.reaction_energy_barrier
     | PropertyName.thermal_correction_to_energy
@@ -50,6 +51,12 @@ const PROPERTY_VIEWS: Record<PropertyWithConfig, ViewConfig> = {
     [PropertyName.lumo_energy]: {
         icon: "entities.property.energy",
         title: "LUMO energy",
+        color: "white",
+        decimals: 3,
+    },
+    [PropertyName.formation_energy]: {
+        icon: "entities.property.energy",
+        title: "Formation energy",
         color: "white",
         decimals: 3,
     },
