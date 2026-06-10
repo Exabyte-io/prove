@@ -12,7 +12,7 @@ import { FileContent } from "./FileContent";
 import { HubbardU } from "./HubbardU";
 import { HubbardV } from "./HubbardV";
 import { HubbardVNN } from "./HubbardVNN";
-import { OneLevelObject } from "./primitive/Object";
+import { ArrayOfObjects, OneLevelObject } from "./primitive/Object";
 import { Tensor } from "./primitive/Tensor";
 import { Structure } from "./Structure";
 import { TwoDimensionalPlot } from "./TwoDimensionalPlot";
@@ -26,6 +26,7 @@ interface NonScalarsListProps {
 type ComponentConfig = {
     component: React.ElementType;
     size?: GridProps;
+    useRawData?: boolean;
 };
 
 const SMALL = { xs: 12, md: 6, xl: 4 };
@@ -33,8 +34,9 @@ const LARGE = { xs: 12 };
 
 const TWO_DIMENSIONAL_PLOT: ComponentConfig = { component: TwoDimensionalPlot, size: LARGE };
 const TENSOR: ComponentConfig = { component: Tensor, size: SMALL };
+const FORMATION_ENERGY_CONTRIBUTIONS = "formation_energy_contributions";
 
-const PROPERTY_VIEWS = {
+const PROPERTY_VIEWS: Record<string, ComponentConfig> = {
     [PropertyName.convergence_electronic]: TWO_DIMENSIONAL_PLOT,
     [PropertyName.convergence_ionic]: TWO_DIMENSIONAL_PLOT,
     [PropertyName.phonon_dispersions]: TWO_DIMENSIONAL_PLOT,
@@ -52,6 +54,7 @@ const PROPERTY_VIEWS = {
     [PropertyName.magnetic_moments]: TENSOR,
     [PropertyName.final_structure]: { component: Structure, size: LARGE },
     [PropertyName.total_energy_contributions]: { component: OneLevelObject, size: LARGE },
+    [FORMATION_ENERGY_CONTRIBUTIONS]: { component: ArrayOfObjects, size: LARGE, useRawData: true },
     [PropertyName.jupyter_notebook_endpoint]: { component: OneLevelObject, size: LARGE },
     [PropertyName.band_gaps]: { component: BandGaps, size: LARGE },
     [PropertyName.file_content]: { component: FileContent, size: SMALL },
@@ -95,8 +98,10 @@ export function NonScalarsList({ results = [], extraConfig }: NonScalarsListProp
             const propertyId = s.slugify(data.name);
 
             if (componentConfig) {
-                const property = PropertyFactory.createProperty(updatedData);
-                const { component: ResultComponent, size } = componentConfig;
+                const { component: ResultComponent, size, useRawData } = componentConfig;
+                const property = useRawData
+                    ? undefined
+                    : PropertyFactory.createProperty(updatedData);
                 widgetElements.push(
                     // We add the index to propertyID here to ensure a unique key exists for each property
                     // If we run into a bug in the future where we try to update the results dynamically, but they don't
