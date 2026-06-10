@@ -15,7 +15,7 @@ export { Structure } from "./components/Structure";
 export { TwoDimensionalPlot } from "./components/TwoDimensionalPlot";
 export { WorkflowLink } from "./components/WorkflowLink";
 export { Chart } from "./components/primitive/Chart";
-export { OneLevelObject } from "./components/primitive/Object";
+export { ArrayOfObjects, OneLevelObject } from "./components/primitive/Object";
 export { PropertyComponent } from "./components/primitive/PropertyComponent";
 export type { PropertyComponentProps } from "./components/primitive/PropertyComponent";
 export { Tensor } from "./components/primitive/Tensor";
