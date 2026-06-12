@@ -5,4 +5,5 @@ interface OneLevelObjectProps {
     property?: Property;
 }
 export declare function OneLevelObject({ title, data, property }: OneLevelObjectProps): import("react/jsx-runtime").JSX.Element;
+export declare function ArrayOfObjects({ title, data, property }: OneLevelObjectProps): import("react/jsx-runtime").JSX.Element;
 export {};
